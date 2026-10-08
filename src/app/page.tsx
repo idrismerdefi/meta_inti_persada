@@ -24,8 +24,8 @@ export default async function HomePage() {
 
           <div className="grid items-center gap-10 py-14 md:py-20 lg:grid-cols-12 lg:gap-6">
             <div className="lg:col-span-6">
-              <h1 className="text-display max-w-[13ch]">
-                Pengadaan industri &amp; migas, <span className="text-[#8fbaf3]">tepat spesifikasi.</span>
+              <h1 className="text-display max-w-[16ch]">
+                Connecting Industry with the <span className="text-[#8fbaf3]">Right Solutions.</span>
               </h1>
               <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-white/72 md:text-[18px]">
                 {company.overview[0]}
