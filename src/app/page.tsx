@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAllContent } from "@/lib/cms";
 import { Arrow, ButtonLink, SectionHead } from "@/components/ui";
-import { CasingSpacerSection } from "@/components/drawings/CasingSpacerSection";
 import { PipelineCrossing } from "@/components/drawings/PipelineCrossing";
 import { SolarArray } from "@/components/drawings/SolarArray";
 
@@ -42,7 +41,15 @@ export default async function HomePage() {
             </div>
 
             <div className="lg:col-span-6">
-              <CasingSpacerSection className="mx-auto h-auto w-full max-w-[640px]" />
+              <Image
+                src="/brand/logo-full.png"
+                alt="Logo PT. Meta Inti Persada — driving digital transformation"
+                width={740}
+                height={560}
+                priority
+                sizes="(min-width: 1024px) 560px, 100vw"
+                className="mx-auto h-auto w-full max-w-[560px]"
+              />
             </div>
           </div>
 
