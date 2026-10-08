@@ -42,10 +42,10 @@ export default async function HomePage() {
 
             <div className="lg:col-span-6">
               <Image
-                src="/brand/logo-full.png"
+                src="/brand/logo-hero.png"
                 alt="Logo PT. Meta Inti Persada — driving digital transformation"
                 width={740}
-                height={560}
+                height={500}
                 priority
                 sizes="(min-width: 1024px) 560px, 100vw"
                 className="mx-auto h-auto w-full max-w-[560px]"

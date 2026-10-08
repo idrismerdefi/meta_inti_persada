@@ -32,11 +32,11 @@ export function Logo({ inverted = false, className = "" }: { inverted?: boolean;
           META INTI PERSADA
         </span>
         <span
-          className={`mt-1 font-mono text-[9.5px] uppercase tracking-[0.14em] ${
+          className={`mt-1 font-mono text-[9px] uppercase tracking-[0.08em] ${
             inverted ? "text-white/55" : "text-muted"
           }`}
         >
-          Industrial Procurement
+          Reliable Supply for Industrial Solutions
         </span>
       </span>
     </span>
