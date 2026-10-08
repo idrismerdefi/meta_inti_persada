@@ -21,8 +21,18 @@ async function connect(): Promise<Database> {
   if (url) {
     const { default: pg } = await import("pg");
     const { drizzle } = await import("drizzle-orm/node-postgres");
-    // SSL diatur lewat connection string (mis. ?sslmode=require pada Neon/Supabase).
-    const pool = new pg.Pool({ connectionString: url, max: 5 });
+    // Koneksi SSL dengan verifikasi sertifikat penuh. Rantai sertifikat Supabase tidak ada di
+    // daftar CA bawaan Node, jadi root CA-nya ditambahkan di samping CA publik yang sudah ada.
+    // sslmode di URL dibuang supaya tidak menimpa opsi ssl di bawah.
+    const { rootCertificates } = await import("node:tls");
+    const { SUPABASE_ROOT_CA } = await import("./supabase-ca");
+    const u = new URL(url);
+    u.searchParams.delete("sslmode");
+    const pool = new pg.Pool({
+      connectionString: u.toString(),
+      max: 5,
+      ssl: { ca: [...rootCertificates, SUPABASE_ROOT_CA], rejectUnauthorized: true },
+    });
     await pool.query(BOOTSTRAP_SQL);
     return drizzle(pool, { schema });
   }
