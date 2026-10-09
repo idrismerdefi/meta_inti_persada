@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { getAllContent } from "@/lib/cms";
 import { Arrow } from "@/components/ui";
+import { ProductImage } from "@/components/ProductImage";
 
 export const metadata: Metadata = {
   title: "Katalog Produk",
@@ -70,16 +70,7 @@ export default async function ProdukPage() {
                           >
                             <span className="tag text-muted">{pad(i + 1)}</span>
                             <span className="relative col-start-2 mb-2 block aspect-[4/3] w-28 overflow-hidden bg-paper-2 sm:col-start-auto sm:mb-0 sm:w-24">
-                              {l.image ? (
-                                <Image
-                                  src={l.image}
-                                  alt={l.name}
-                                  fill
-                                  sizes="96px"
-                                  unoptimized={l.image.startsWith("/media/")}
-                                  className="object-cover"
-                                />
-                              ) : null}
+                              {l.image ? <ProductImage src={l.image} alt={l.name} /> : null}
                             </span>
                             <span className="col-start-2 text-[17px] sm:col-start-auto">{l.name}</span>
                             <span className="col-start-2 text-[15px] leading-relaxed text-muted sm:col-start-auto">
