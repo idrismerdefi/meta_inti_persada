@@ -62,27 +62,26 @@ export default async function ProdukPage() {
                         <h3 className="text-[22px] tracking-[-0.01em]">{g.title}</h3>
                         <p className="tag text-muted">{g.intro}</p>
                       </div>
-                      <div className={g.image ? "mt-2 grid gap-x-8 md:grid-cols-12" : ""}>
-                      {g.image ? (
-                        <figure className="relative mt-5 aspect-[4/3] overflow-hidden bg-ink md:col-span-4 md:aspect-auto md:min-h-[260px]">
-                          <Image
-                            src={g.image}
-                            alt={g.title}
-                            fill
-                            sizes="(min-width: 768px) 28vw, 100vw"
-                            unoptimized={g.image.startsWith("/media/")}
-                            className="object-cover"
-                          />
-                        </figure>
-                      ) : null}
-                      <ul className={g.image ? "md:col-span-8" : ""}>
+                      <ul>
                         {g.lines.map((l, i) => (
                           <li
-                            key={l.name}
-                            className="group grid grid-cols-[2.5rem_1fr] gap-x-4 gap-y-1 border-b border-line py-5 sm:grid-cols-[2.5rem_14rem_1fr_auto] sm:items-baseline sm:gap-x-6"
+                            key={i}
+                            className="group grid grid-cols-[2.5rem_1fr] gap-x-4 gap-y-1 border-b border-line py-5 sm:grid-cols-[2.5rem_6rem_14rem_1fr_auto] sm:items-center sm:gap-x-6"
                           >
                             <span className="tag text-muted">{pad(i + 1)}</span>
-                            <span className="text-[17px]">{l.name}</span>
+                            <span className="relative col-start-2 mb-2 block aspect-[4/3] w-28 overflow-hidden bg-paper-2 sm:col-start-auto sm:mb-0 sm:w-24">
+                              {l.image ? (
+                                <Image
+                                  src={l.image}
+                                  alt={l.name}
+                                  fill
+                                  sizes="96px"
+                                  unoptimized={l.image.startsWith("/media/")}
+                                  className="object-cover"
+                                />
+                              ) : null}
+                            </span>
+                            <span className="col-start-2 text-[17px] sm:col-start-auto">{l.name}</span>
                             <span className="col-start-2 text-[15px] leading-relaxed text-muted sm:col-start-auto">
                               {l.detail}
                             </span>
@@ -96,7 +95,6 @@ export default async function ProdukPage() {
                           </li>
                         ))}
                       </ul>
-                      </div>
                     </div>
                   ))}
                 </div>

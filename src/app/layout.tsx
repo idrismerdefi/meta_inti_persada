@@ -87,7 +87,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${instrument.variable} ${plexMono.variable}`}
     >
-      <body className="min-h-dvh">
+      <body className="min-h-dvh" suppressHydrationWarning>
         <a
           href="#konten"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-white"

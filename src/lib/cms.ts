@@ -81,7 +81,10 @@ export function sanitize<K extends ContentKey>(key: K, val: unknown): Content[K]
     const o = Array.isArray(val) ? (out as Record<string, unknown>[]) : d;
     return d.map((item, i) => {
       const merged = { ...(o[i] ?? item), [lock]: item[lock] };
-      if (key === "catalog" && !IMAGE_PATH.test(String(merged.image))) merged.image = item.image;
+      if (key === "catalog") {
+        const lines = merged.lines as { image: string }[];
+        for (const l of lines) if (!IMAGE_PATH.test(l.image)) l.image = "";
+      }
       return merged;
     }) as Content[K];
   }

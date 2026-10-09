@@ -120,12 +120,12 @@ export type CatalogGroup = {
   title: string;
   pillar: Pillar["slug"];
   intro: string;
-  /** Path gambar: "/photos/…" (file di public) atau "/media/ID" (unggahan dari CMS). Kosong = tanpa gambar. */
-  image: string;
-  lines: { name: string; detail: string }[];
+  /** `image` per produk: "/photos/…" (file di public) atau "/media/ID" (unggahan dari CMS). Kosong = tanpa foto. */
+  lines: { name: string; detail: string; image: string }[];
 };
 
-export const catalog: CatalogGroup[] = [
+/** Foto bawaan per kelompok dipakai sebagai foto awal tiap produk; admin bisa menggantinya per produk. */
+const catalogSeed: (Omit<CatalogGroup, "lines"> & { image: string; lines: { name: string; detail: string }[] })[] = [
   {
     id: "pipeline",
     title: "Pipeline & Pipe Accessories",
@@ -210,6 +210,11 @@ export const catalog: CatalogGroup[] = [
     ],
   },
 ];
+
+export const catalog: CatalogGroup[] = catalogSeed.map(({ image, lines, ...g }) => ({
+  ...g,
+  lines: lines.map((l) => ({ ...l, image })),
+}));
 
 export const processSteps = [
   { title: "Identifikasi", body: "Analisis spesifikasi & kebutuhan proyek." },
